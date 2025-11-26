@@ -72,5 +72,13 @@ public class ProductService {
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
+    
+    @Transactional
+    public Product toggleEmailNotifications(Long productId) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+        product.setEmailNotificationsEnabled(!product.getEmailNotificationsEnabled());
+        return productRepository.save(product);
+    }
 }
 

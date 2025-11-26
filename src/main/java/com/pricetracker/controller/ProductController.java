@@ -72,5 +72,15 @@ public class ProductController {
         
         return ResponseEntity.ok(product);
     }
+    
+    @PostMapping("/{id}/toggle-email-notifications")
+    public ResponseEntity<?> toggleEmailNotifications(@PathVariable Long id) {
+        try {
+            Product product = productService.toggleEmailNotifications(id);
+            return ResponseEntity.ok(product);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
 }
 

@@ -44,6 +44,9 @@ public class Product {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     
+    @Column(name = "email_notifications_enabled", nullable = false)
+    private Boolean emailNotificationsEnabled = true;
+    
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)

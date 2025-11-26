@@ -45,6 +45,11 @@ public class PriceCheckScheduler {
             BigDecimal currentPrice = product.getCurrentPrice();
             BigDecimal previousPrice = history.get(1).getPrice(); // Second most recent (index 1, since 0 is current)
             
+            // Check if email notifications are enabled for this product
+            if (product.getEmailNotificationsEnabled() == null || !product.getEmailNotificationsEnabled()) {
+                continue; // Skip email notifications for this product
+            }
+            
             // Check if price dropped
             if (currentPrice.compareTo(previousPrice) < 0) {
                 User user = product.getUser();

@@ -200,13 +200,21 @@ function displayProducts(products) {
     productsList.innerHTML = products.map(product => {
         const currentPrice = product.currentPrice ? `$${product.currentPrice.toFixed(2)}` : 'Not checked';
         const targetPrice = product.targetPrice ? `$${product.targetPrice.toFixed(2)}` : 'Not set';
-        const lastChecked = product.lastChecked ? new Date(product.lastChecked).toLocaleString() : 'Never';
+        const lastChecked = product.lastChecked ? formatLocalDateTime(product.lastChecked) : 'Never';
+        const emailEnabled = product.emailNotificationsEnabled !== false; // Default to true if null
         
         return `
             <div class="product-item">
                 <div class="product-header">
-                    <div>
-                        <div class="product-name">${escapeHtml(product.name)}</div>
+                    <div class="product-header-left">
+                        <div class="product-name-row">
+                            <div class="product-name">${escapeHtml(product.name)}</div>
+                            <label class="toggle-switch" title="${emailEnabled ? 'Disable' : 'Enable'} email notifications">
+                                <input type="checkbox" ${emailEnabled ? 'checked' : ''} onchange="toggleEmailNotifications(${product.id}, this.checked)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span class="toggle-label">Email Alerts</span>
+                        </div>
                         <a href="${escapeHtml(product.url)}" target="_blank" class="product-url">${escapeHtml(product.url)}</a>
                     </div>
                     <button class="btn btn-danger btn-sm" onclick="deleteProduct(${product.id})">Delete</button>
@@ -279,6 +287,29 @@ async function checkAllPrices() {
     }
 }
 
+async function toggleEmailNotifications(productId, enabled) {
+    try {
+        const response = await fetch(`${API_BASE}/products/${productId}/toggle-email-notifications`, {
+            method: 'POST'
+        });
+
+        if (response.ok) {
+            const product = await response.json();
+            showNotification(
+                enabled ? 'Email notifications enabled for this product' : 'Email notifications disabled for this product',
+                'success'
+            );
+            // Update the product in the list without full reload
+            loadProducts();
+        } else {
+            showNotification('Failed to update email notifications', 'error');
+        }
+    } catch (error) {
+        showNotification('Error updating email notifications', 'error');
+        console.error('Toggle email notifications error:', error);
+    }
+}
+
 async function deleteProduct(productId) {
     if (!confirm('Are you sure you want to delete this product?')) {
         return;
@@ -316,5 +347,42 @@ function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+}
+
+function formatLocalDateTime(dateString) {
+    if (!dateString) return 'Never';
+    
+    try {
+        // Server sends dates in UTC but without the 'Z' suffix
+        // Append 'Z' to tell JavaScript the time is in UTC
+        let utcDateString = dateString;
+        if (!dateString.endsWith('Z') && !dateString.includes('+') && !dateString.includes('-', 10)) {
+            utcDateString = dateString + 'Z';
+        }
+        
+        // Parse the date string as UTC
+        const date = new Date(utcDateString);
+        
+        // Check if date is valid
+        if (isNaN(date.getTime())) {
+            return 'Invalid date';
+        }
+        
+        // Format to user's local timezone with a readable format
+        const options = {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true,
+            timeZoneName: 'short'
+        };
+        
+        return date.toLocaleString(undefined, options);
+    } catch (error) {
+        console.error('Error formatting date:', error);
+        return 'Invalid date';
+    }
 }
 
