@@ -6,10 +6,10 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #111;
     min-height: 100vh;
     padding: 20px;
-    color: #333;
+    color: #f0f0f0;
 }
 
 .container {
@@ -19,10 +19,10 @@ body {
 
 /* Header */
 .header {
-    background: white;
+    background: #181818;
     padding: 20px 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
     margin-bottom: 30px;
     display: flex;
     justify-content: space-between;
@@ -30,7 +30,7 @@ body {
 }
 
 .header h1 {
-    color: #667eea;
+    color: #ffffff;
     font-size: 28px;
 }
 
@@ -42,7 +42,7 @@ body {
 
 .user-info span {
     font-weight: 600;
-    color: #555;
+    color: #e0e0e0;
 }
 
 /* Auth Section */
@@ -54,10 +54,10 @@ body {
 }
 
 .auth-container {
-    background: white;
+    background: #181818;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
     width: 100%;
     max-width: 450px;
 }
@@ -66,7 +66,7 @@ body {
     display: flex;
     gap: 10px;
     margin-bottom: 30px;
-    border-bottom: 2px solid #f0f0f0;
+    border-bottom: 1px solid #333;
 }
 
 .tab-btn {
@@ -75,25 +75,25 @@ body {
     background: none;
     cursor: pointer;
     font-size: 16px;
-    color: #666;
+    color: #bbbbbb;
     border-bottom: 2px solid transparent;
     margin-bottom: -2px;
     transition: all 0.3s;
 }
 
 .tab-btn.active {
-    color: #667eea;
-    border-bottom-color: #667eea;
+    color: #ffffff;
+    border-bottom-color: #ffffff;
     font-weight: 600;
 }
 
 .tab-btn:hover {
-    color: #667eea;
+    color: #ffffff;
 }
 
 .auth-form h2 {
     margin-bottom: 25px;
-    color: #333;
+    color: #ffffff;
 }
 
 /* Dashboard */
@@ -108,10 +108,10 @@ body {
 
 /* Cards */
 .card {
-    background: white;
+    background: #181818;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
     margin-bottom: 30px;
 }
 
@@ -123,7 +123,7 @@ body {
 }
 
 .card h2 {
-    color: #333;
+    color: #ffffff;
     margin-bottom: 20px;
 }
 
@@ -148,21 +148,23 @@ body {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: #555;
+    color: #dddddd;
 }
 
 .form-group input {
     width: 100%;
     padding: 12px;
-    border: 2px solid #e0e0e0;
+    border: 1px solid #333;
     border-radius: 6px;
     font-size: 14px;
-    transition: border-color 0.3s;
+    background: #111;
+    color: #f0f0f0;
+    transition: border-color 0.3s, background 0.3s;
 }
 
 .form-group input:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #888;
 }
 
 .product-form {
@@ -181,22 +183,22 @@ body {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: #ffffff;
+    color: #000000;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
 }
 
 .btn-secondary {
-    background: #f0f0f0;
-    color: #666;
+    background: #333333;
+    color: #f0f0f0;
 }
 
 .btn-secondary:hover {
-    background: #e0e0e0;
+    background: #444444;
 }
 
 .btn-success {
@@ -229,15 +231,16 @@ body {
 }
 
 .product-item {
-    background: #f9fafb;
+    background: #141414;
     padding: 20px;
     border-radius: 8px;
-    border-left: 4px solid #667eea;
-    transition: transform 0.2s;
+    border-left: 4px solid #333333;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .product-item:hover {
     transform: translateX(5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
 }
 
 .product-header {
@@ -265,19 +268,19 @@ body {
 .product-name {
     font-size: 18px;
     font-weight: 600;
-    color: #333;
+    color: #ffffff;
     margin: 0;
 }
 
 .toggle-label {
     font-size: 12px;
-    color: #666;
+    color: #bbbbbb;
     font-weight: 500;
     white-space: nowrap;
 }
 
 .product-url {
-    color: #667eea;
+    color: #f0f0f0;
     text-decoration: none;
     font-size: 14px;
     word-break: break-all;
@@ -301,14 +304,14 @@ body {
 
 .info-label {
     font-size: 12px;
-    color: #666;
+    color: #bbbbbb;
     margin-bottom: 5px;
 }
 
 .info-value {
     font-size: 18px;
     font-weight: 600;
-    color: #333;
+    color: #ffffff;
 }
 
 .price-current {
@@ -316,7 +319,7 @@ body {
 }
 
 .price-target {
-    color: #667eea;
+    color: #bbbbbb;
 }
 
 .price-drop {
@@ -338,13 +341,13 @@ body {
 .loading {
     text-align: center;
     padding: 40px;
-    color: #666;
+    color: #bbbbbb;
 }
 
 .empty-state {
     text-align: center;
     padding: 60px 20px;
-    color: #999;
+    color: #777777;
 }
 
 .empty-state svg {
@@ -397,7 +400,7 @@ body {
     justify-content: space-between;
     padding: 8px 0;
     font-size: 14px;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #222222;
 }
 
 .history-item:last-child {
@@ -405,12 +408,12 @@ body {
 }
 
 .history-date {
-    color: #666;
+    color: #bbbbbb;
 }
 
 .history-price {
     font-weight: 600;
-    color: #333;
+    color: #ffffff;
 }
 
 /* Toggle Switch */
@@ -435,7 +438,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: #444;
     transition: 0.3s;
     border-radius: 24px;
 }
@@ -453,7 +456,7 @@ body {
 }
 
 .toggle-switch input:checked + .toggle-slider {
-    background-color: #667eea;
+    background-color: #ffffff;
 }
 
 .toggle-switch input:checked + .toggle-slider:before {
@@ -461,10 +464,10 @@ body {
 }
 
 .toggle-switch input:focus + .toggle-slider {
-    box-shadow: 0 0 1px #667eea;
+    box-shadow: 0 0 1px #ffffff;
 }
 
 .toggle-switch:hover .toggle-slider {
-    box-shadow: 0 0 4px rgba(102, 126, 234, 0.5);
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
 }
 
