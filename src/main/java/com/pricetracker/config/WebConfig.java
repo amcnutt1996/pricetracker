@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/* Configures the web layer of the Spring Boot Application */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
     

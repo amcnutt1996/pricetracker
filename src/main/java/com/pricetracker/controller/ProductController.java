@@ -21,6 +21,9 @@ public class ProductController {
     private final ProductService productService;
     private final ScrapingService scrapingService;
     
+    /**
+     * Create new product. Listens for post requests to api/products.
+     */
     @PostMapping
     public ResponseEntity<?> createProduct(@Valid @RequestBody ProductDTO productDTO) {
         try {
