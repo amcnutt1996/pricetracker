@@ -52,7 +52,17 @@ pricetracker/
 
 1. **Clone or navigate to the project directory**
 
-2. **Set up email credentials** (optional, for email notifications):
+2. **Set up required environment variables**
+
+   Database (MySQL) credentials:
+   ```bash
+   export MYSQL_ROOT_PASSWORD=your-root-password
+   export SPRING_DATASOURCE_URL="jdbc:mysql://mysql:3306/pricetracker?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true"
+   export SPRING_DATASOURCE_USERNAME=root
+   export SPRING_DATASOURCE_PASSWORD=your-app-password
+   ```
+
+   Email credentials (optional, for email notifications):
    ```bash
    export MAIL_USERNAME=your-email@gmail.com
    export MAIL_PASSWORD=your-app-password
@@ -81,7 +91,18 @@ docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=rootpassword -e MYSQL_DATABASE
 
 ### 2. Configure Application
 
-Update `src/main/resources/application.yml` with your database and email settings.
+The application reads most sensitive settings from environment variables.
+For local development without Docker, you can export them before running:
+
+```bash
+export SPRING_DATASOURCE_URL="jdbc:mysql://localhost:3306/pricetracker?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true"
+export SPRING_DATASOURCE_USERNAME=root
+export SPRING_DATASOURCE_PASSWORD=your-app-password
+export MAIL_USERNAME=your-email@gmail.com
+export MAIL_PASSWORD=your-app-password
+```
+
+You generally should not hard-code real passwords into `src/main/resources/application.yml`.
 
 ### 3. Install Python Dependencies
 
